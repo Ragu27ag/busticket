@@ -25,7 +25,7 @@ export default function DialogTicket({open,handleClose,addTicket,currticket,edit
     e.preventDefault();
     var data = {}
 
-    Array.from(e.target.elements).map((element) => {
+    Array.from(e.target.elements).forEach((element) => {
           if(element.nodeName === 'INPUT' ){
               data[element.name] = element.value
           } 
