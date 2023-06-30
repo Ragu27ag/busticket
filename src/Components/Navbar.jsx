@@ -232,7 +232,7 @@ function Navbar(props) {
         {console.log(currticket)}
         <div style= {{display:'flex' , flexDirection:'row' , flexWrap:'wrap' }}>
        {ticket.map(({no,from,to,date,time,available}) => (
-              <TicketList no = {no} from = {from} to = {to} date={date} time = {time} available={available} deleteTicket={deleteTicket}
+              <TicketList key = {no} no = {no} from = {from} to = {to} date={date} time = {time} available={available} deleteTicket={deleteTicket}
               currentTicket={currentTicket}/ >
         ))}
         </div>
