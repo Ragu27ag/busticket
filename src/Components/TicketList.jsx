@@ -15,8 +15,10 @@ const TicketList = ({no,from,to,date,time,available,deleteTicket,currentTicket})
         <p style={{padding:'2px',paddingBottom:'0px',textOverflow:'ellipsis',color:'grey',fontFamily:'serif'}}>Available Tickets : <span style = {{color:'black'}}>{available}</span></p>
         <Divider sx = {{backgroundColor:'#e93e3e'}} variant='middle' />
         <br/>
+        <div style= {{display:'flex',flexWrap:'wrap', justifyContent:'space-evenly'}}>
         <Button  variant='primary'  sx={{backgroundColor:'#e93e3e',margin :'2px' }} onClick = {() => currentTicket(no)}>Edit</Button>
         <Button  variant='primary' sx={{backgroundColor:'#e93e3e',margin :'2px'  }} onClick = {() => deleteTicket(no)}>Delete</Button>
+        </div>
         </Box>
     
   )

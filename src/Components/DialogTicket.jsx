@@ -18,7 +18,7 @@ function PaperComponent(props) {
   );
 }
 
-export default function DialogTicket({open,handleClose,addTicket,currticket,editTicket}) {
+export default function DialogTicket({open,handleClose,addTicket,currticket,editTicket,snackmessage}) {
   console.log('tic'+currticket.no)
  
  const  handleSubmit = (e) =>{
@@ -72,7 +72,7 @@ export default function DialogTicket({open,handleClose,addTicket,currticket,edit
          <Button sx={{mt:2}} autoFocus onClick={handleClose} type='reset'>
             Cancel
           </Button>
-          <Button color='primary' sx={{mt:2}} type='submit'>Add</Button>
+          <Button color='primary'  sx={{mt:2}} type='submit'>{snackmessage ? 'Edit' : 'Add'}</Button>
           
          </form>
         </DialogContent>

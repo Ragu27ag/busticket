@@ -31,7 +31,7 @@ function Navbar(props) {
   const [currticket,setcurrTicket] = React.useState([]);
   const [message,setMessage] = React.useState(false)
   const [alertmessage,setalertMessage] = React.useState(false)
-  const [mess,setmess] = React.useState(false)
+  const [snackmessage,setsnackmessages] = React.useState(false)
 
 
 
@@ -48,7 +48,7 @@ function Navbar(props) {
   setTicket([...ticket,tic]);
   setcurrTicket('')
   setMessage(true);
-  setmess(false)
+  setsnackmessages(false)
  }
      
     
@@ -61,6 +61,7 @@ function Navbar(props) {
   }
   const currentTicket = (busno) => {
     setcurrTicket(ticket.find(({no}) => no === busno));
+    setsnackmessages(true)
     //console.log(currticket)
     setOpen(true)
     
@@ -73,7 +74,7 @@ function Navbar(props) {
     const newArr = [...ticket];
     newArr[ticindex] = tic
     setTicket(newArr);
-    setmess(true)
+    setsnackmessages(true)
     setcurrTicket('')
    
     
@@ -85,6 +86,7 @@ function Navbar(props) {
 
 
   const handleClickOpen = () => {
+    setsnackmessages(false)
     setOpen(true);
   };
 
@@ -225,8 +227,8 @@ function Navbar(props) {
         <h1>Admin Dashboard</h1>
         <h2 style={{textAlign:'end'}}>Buses Available : {ticket.length}</h2>
         <DialogTicket open={open} handleClose={handleClose} addTicket={addTicket} currticket={currticket} editTicket={
-          editTicket
-        }/>
+          editTicket} snackmessage = {snackmessage}
+        />
         {console.log(currticket)}
         <div style= {{display:'flex' , flexDirection:'row' , flexWrap:'wrap' }}>
        {ticket.map(({no,from,to,date,time,available}) => (
@@ -239,7 +241,7 @@ function Navbar(props) {
   open={message}
   autoHideDuration={2000}
   onClose={handleClose}
-  message={mess ? 'Edited Successfully' : 'Added Successfully'}
+  message={snackmessage ? 'Edited Successfully' : 'Added Successfully'}
   action={action}
 />
          
