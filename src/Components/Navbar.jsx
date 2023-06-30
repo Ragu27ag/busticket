@@ -239,7 +239,7 @@ function Navbar(props) {
         
        <Snackbar
   open={message}
-  autoHideDuration={2000}
+  autoHideDuration={1000}
   onClose={handleClose}
   message={snackmessage ? 'Edited Successfully' : 'Added Successfully'}
   action={action}
