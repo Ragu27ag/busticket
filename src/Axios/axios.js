@@ -1,12 +1,12 @@
 import axios from "axios";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
 
 const backendinstance = axios.create({
-  baseURL: process.env.URLBACK,
+  baseURL: process.env.REACT_APP_BACK_URL,
   timeout: 5000,
 });
 
-dotenv.config();
+// dotenv.config();
 
 backendinstance.interceptors.request.use(
   function (req) {
