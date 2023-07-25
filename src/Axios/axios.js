@@ -2,7 +2,7 @@ import axios from "axios";
 import * as dotenv from "dotenv";
 
 const backendinstance = axios.create({
-  baseURL: process.env.URL,
+  baseURL: process.env.URLBACK,
   timeout: 5000,
 });
 
