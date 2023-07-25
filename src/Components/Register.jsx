@@ -208,6 +208,7 @@ const Register = () => {
           <br />
           <Button
             type="submit"
+            variant = "contained"
             sx={{ backgroundColor: "#e93e3e", color: "white" }}
           >
             Sign UP
