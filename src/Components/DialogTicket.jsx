@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import Draggable from 'react-draggable';
 import { TextField } from '@mui/material';
 
+
 function PaperComponent(props) {
   return (
     <Draggable
@@ -63,9 +64,11 @@ export default function DialogTicket({open,handleClose,addTicket,currticket,edit
          <br/>
          <TextField id="to"  name = 'to' label="To" variant="standard"  type = 'text' defaultValue = {currticket?.to  || ''} required />
          <br/>
-         <TextField sx={{mt:2}} id="date"  name = 'date' label="" variant="standard" type = 'date' defaultValue = {currticket?.date  || ''} required/>
+         
+         
+         <TextField   sx={{mt:2}} id="date"   name = 'date' label="" variant="standard" type = 'date' defaultValue = {currticket?.date  || ''} required/>
          <br/>
-         <TextField sx={{mt:2}} id="time"  name = 'time' label="" variant="standard" type = 'time' defaultValue = {currticket?.time  || ''} required/>
+         <TextField  fullWidth sx={{mt:2}} id="time"  name = 'time' label="" variant="standard" type = 'time' defaultValue = {currticket?.time  || ''} required/>
          <br/>
          <TextField sx={{mt:1}} id="available"  name = 'available' label="Ticket Available" required variant="standard" type = 'number' defaultValue = {currticket?.available  || ''}/>
          <br/>
