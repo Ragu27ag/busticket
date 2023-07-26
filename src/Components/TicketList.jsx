@@ -26,7 +26,7 @@ const TicketList = ({
 
     navigate("/book");
   };
-  const d = useSelector((state) => state.bookreducer);
+  // const d = useSelector((state) => state.bookreducer);
   // console.log(d);
 
   // if (available === 0) {
