@@ -49,7 +49,7 @@ function Navbar(props) {
 
   const healthchk = async () => {
     const res = await backendinstance("/tickets/health");
-    console.log(res);
+    // console.log(res);
   };
 
   const addTicket = async (tic) => {
@@ -60,10 +60,10 @@ function Navbar(props) {
       // alert('Bus no already ready for a trip')
       setOpen(false);
     } else {
-      console.log(tic);
+      // console.log(tic);
       setTicket([...ticket, tic]);
       const response = await backendinstance.post("/tickets", tic);
-      console.log(response);
+      // console.log(response);
       // fetch("https://649034421e6aa71680cacc9a.mockapi.io/ticket", {
       //   method: "POST",
       //   body: JSON.stringify(tic),
@@ -79,13 +79,13 @@ function Navbar(props) {
 
   const getTicket = async () => {
     const { data } = await backendinstance.get("/tickets");
-    console.log(data);
+    // console.log(data);
     setTicket(data);
   };
 
   React.useEffect(() => {
     if (Object.keys(user).length === 0) {
-      console.log("if");
+      // console.log("if");
       navigate("/login");
     } else {
       healthchk();
@@ -103,7 +103,7 @@ function Navbar(props) {
     // const id = ticket.find(({ no }) => no === busno).id;
     setTicket(ticket.filter(({ no }) => no !== busno));
     const res = await backendinstance.delete(`/tickets/${busno}`);
-    console.log(res);
+    // console.log(res);
     // fetch(`https://649034421e6aa71680cacc9a.mockapi.io/ticket/${id}`, {
     //   method: "DELETE",
     //   headers: {
@@ -119,14 +119,14 @@ function Navbar(props) {
   };
 
   const editTicket = async (tic) => {
-    console.log(ticket);
-    console.log(tic);
+    // console.log(ticket);
+    // console.log(tic);
     setMessage(true);
     const ticindex = ticket.findIndex(({ no }) => no === tic.no);
     const newArr = [...ticket];
     newArr[ticindex] = tic;
     const id = ticket.find(({ no }) => no === tic.no).no;
-    console.log(id);
+    // console.log(id);
     // fetch(`https://649034421e6aa71680cacc9a.mockapi.io/ticket/${id}`, {
     //   method: "PUT",
     //   body: JSON.stringify(tic),
@@ -313,7 +313,7 @@ function Navbar(props) {
           editTicket={editTicket}
           snackmessage={snackmessage}
         />
-        {console.log(currticket)}
+{/*         {console.log(currticket)} */}
         <div
           style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
         >
