@@ -25,7 +25,7 @@ const Book = () => {
     const { data } = await backendinstance.get(`/tickets/${busno}`);
 
     setbookdata(data);
-  }, [busno, no]);
+  }, [busno]);
 
   const navigate = useNavigate();
 
