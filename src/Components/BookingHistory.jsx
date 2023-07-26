@@ -18,7 +18,7 @@ const BookingHistory = () => {
     getData();
   }, [getData]);
 
-  console.log(history);
+  // console.log(history);
   return (
     <>
       <Link
