@@ -18,7 +18,7 @@ const store = configureStore({
   reducer: {
     bookreducer,
   },
-  devTools: true,
+  devTools: false,
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(localStorageMiddleware),
