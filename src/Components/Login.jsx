@@ -22,7 +22,7 @@ const Login = () => {
     },
     onSubmit: async (values) => {
       const { data } = await backendinstance.post("/users/login", values);
-      console.log(data);
+      // console.log(data);
       if (data.msg === "Invalid Credentials") {
         alert("Invalid Credentials");
       } else {
@@ -40,7 +40,7 @@ const Login = () => {
     navigate("/");
   }
 
-  console.log(formdata.touched.email);
+  // console.log(formdata.touched.email);
   return (
     <>
       {" "}
