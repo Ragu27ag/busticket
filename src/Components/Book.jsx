@@ -6,6 +6,8 @@ import { Box, Button, Typography } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Loading from "./Loading";
+
 
 const Book = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -129,7 +131,7 @@ const Book = () => {
         }}
       >
         {bookdata === "" ? (
-          <p>Loading....</p>
+        <Loading />
         ) : (
           <>
             {/* {" "}
