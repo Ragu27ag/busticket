@@ -16,7 +16,7 @@ const Book = () => {
   const busno = localStorage.getItem("no");
   const [bookdata, setbookdata] = useState("");
   const [tickets, setTickets] = useState("");
-  const arr = [];
+  // const arr = [];
     const [intervalcount, setintervalcount] = useState(0);
 
 
@@ -42,7 +42,7 @@ const Book = () => {
 
   // console.log(bookdata);
 
-  arr.push(bookdata);
+  // arr.push(bookdata);
   // console.log(arr);
 
   const [open, setOpen] = React.useState(false);
