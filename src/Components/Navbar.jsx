@@ -48,7 +48,7 @@ function Navbar(props) {
   );
 
   const healthchk = async () => {
-    const res = await backendinstance("/tickets/health");
+   await backendinstance("/tickets/health");
     // console.log(res);
   };
 
@@ -62,7 +62,7 @@ function Navbar(props) {
     } else {
       // console.log(tic);
       setTicket([...ticket, tic]);
-      const response = await backendinstance.post("/tickets", tic);
+       await backendinstance.post("/tickets", tic);
       // console.log(response);
       // fetch("https://649034421e6aa71680cacc9a.mockapi.io/ticket", {
       //   method: "POST",
@@ -102,7 +102,7 @@ function Navbar(props) {
   const deleteTicket = async (busno) => {
     // const id = ticket.find(({ no }) => no === busno).id;
     setTicket(ticket.filter(({ no }) => no !== busno));
-    const res = await backendinstance.delete(`/tickets/${busno}`);
+    await backendinstance.delete(`/tickets/${busno}`);
     // console.log(res);
     // fetch(`https://649034421e6aa71680cacc9a.mockapi.io/ticket/${id}`, {
     //   method: "DELETE",
