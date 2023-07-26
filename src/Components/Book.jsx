@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import backendinstance from "../Axios/axios";
+import backendinstance from "../Axios/axios";n
 import { Link, useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
@@ -21,7 +21,7 @@ const Book = () => {
 
 
   const getData = useCallback(async () => {
-    console.log(no);
+    // console.log(no);
     const { data } = await backendinstance.get(`/tickets/${busno}`);
 
     setbookdata(data);
@@ -34,16 +34,16 @@ const Book = () => {
   useEffect(() => {
     getData();
      return () => {
-      console.log(intervalcount);
+      // console.log(intervalcount);
       clearInterval(intervalcount);
-      console.log("cleared");
+      // console.log("cleared");
     };
   }, [getData,intervalcount]);
 
-  console.log(bookdata);
+  // console.log(bookdata);
 
   arr.push(bookdata);
-  console.log(arr);
+  // console.log(arr);
 
   const [open, setOpen] = React.useState(false);
 
@@ -73,7 +73,7 @@ const Book = () => {
   );
 
   const handleticket = async () => {
-    console.log(tickets);
+    // console.log(tickets);
     const currtic = bookdata.available - tickets;
 
     const ticobj = {
@@ -95,17 +95,17 @@ const Book = () => {
       history
     );
 
-    console.log(response1, response2);
+    // console.log(response1, response2);
 
     //const response3 =  await backendinstance.post("/email", history);
 
-    console.log(ticobj);
+    // console.log(ticobj);
     localStorage.removeItem("no");
     handleClick();
     if (response1 && response2) {
       handleClick();
       const timecount = setTimeout(() => {
-        console.log(timecount);
+        // console.log(timecount);
         navigate("/");
       }, 4000);
       setintervalcount(timecount);
