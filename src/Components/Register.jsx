@@ -48,7 +48,7 @@ const Register = () => {
     validationSchema: validation,
   });
 
-  console.log(formdata);
+  // console.log(formdata);
 
   return (
     <div
