@@ -15,6 +15,8 @@ const Book = () => {
   const [bookdata, setbookdata] = useState("");
   const [tickets, setTickets] = useState("");
   const arr = [];
+    const [intervalcount, setintervalcount] = useState(0);
+
 
   const getData = useCallback(async () => {
     console.log(no);
@@ -29,7 +31,12 @@ const Book = () => {
 
   useEffect(() => {
     getData();
-  }, [getData]);
+     return () => {
+      console.log(intervalcount);
+      clearInterval(intervalcount);
+      console.log("cleared");
+    };
+  }, [getData,intervalcount]);
 
   console.log(bookdata);
 
@@ -94,7 +101,12 @@ const Book = () => {
     localStorage.removeItem("no");
     handleClick();
     if (response1 && response2) {
-      navigate("/");
+      handleClick();
+      const timecount = setTimeout(() => {
+        console.log(timecount);
+        navigate("/");
+      }, 4000);
+      setintervalcount(timecount);
     }
   };
   return (
