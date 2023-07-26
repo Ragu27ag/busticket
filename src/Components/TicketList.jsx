@@ -27,7 +27,7 @@ const TicketList = ({
     navigate("/book");
   };
   const d = useSelector((state) => state.bookreducer);
-  console.log(d);
+  // console.log(d);
 
   // if (available === 0) {
   //   reference.current.style.backgroundColor = "grey";
