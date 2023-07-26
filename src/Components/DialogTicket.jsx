@@ -20,7 +20,7 @@ function PaperComponent(props) {
 }
 
 export default function DialogTicket({open,handleClose,addTicket,currticket,editTicket,snackmessage}) {
-  console.log('tic'+currticket.no)
+  // console.log('tic'+currticket.no)
  
  const  handleSubmit = (e) =>{
     e.preventDefault();
