@@ -303,8 +303,8 @@ function Navbar(props) {
             close
           </Button>
         </Dialog>
-        {user.isadmin ? <h1>Admin Dashboard</h1> : <h1> Hi {user.name}</h1>}{" "}
-        <h2 style={{ textAlign: "end" }}>Buses Available : {ticket.length}</h2>
+        {user.isadmin ? <h1>Admin Dashboard</h1> : <h1 style={{ color: "#e93e3e" }}> Hi {user.name}</h1>}{" "}
+        <h2 style={{ textAlign: "end" }}>Buses Available : <span style={{ color: "#e93e3e" }}>{ticket.length}</span></h2>
         <DialogTicket
           open={open}
           handleClose={handleClose}
