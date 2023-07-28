@@ -40,6 +40,8 @@ function Navbar(props) {
   const [message, setMessage] = React.useState(false);
   const [alertmessage, setalertMessage] = React.useState(false);
   const [snackmessage, setsnackmessages] = React.useState(false);
+  const [searchfrom,setSearchFrom] = React.useState(false);
+   const [searchto,setSearchTo] = React.useState(false);
   const navigate = useNavigate();
 
   const user = React.useMemo(
@@ -303,6 +305,27 @@ function Navbar(props) {
             close
           </Button>
         </Dialog>
+        <div style={{ textAlign: "end" }}>
+          <label htmlFor="from">From : </label>
+          <input
+            id="from"
+            placeholder="search from..."
+            onChange={(e) => {
+              setSearchFrom(e.target.value);
+            }}
+            style={{ color: "#e93e3e" }}
+          />
+          <br />
+          <label htmlFor="to">To :</label>&nbsp;
+          <input
+            id="to"
+            placeholder="search to..."
+            onChange={(e) => {
+              setSearchTo(e.target.value);
+            }}
+            style={{ color: "#e93e3e" }}
+          />
+        </div>
         {user.isadmin ? <h1>Admin Dashboard</h1> : <h1 style={{ color: "#e93e3e" }}> Hi {user.name}</h1>}{" "}
         <h2 style={{ textAlign: "end" }}>Buses Available : <span style={{ color: "#e93e3e" }}>{ticket.length}</span></h2>
         <DialogTicket
@@ -317,7 +340,7 @@ function Navbar(props) {
         <div
           style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
         >
-          {ticket.map(({ no, from, to, date, time, available }) => (
+          {ticket.filter((tickets) => {return searchfrom.toLowerCase() === '' ? tickets : tickets.from.includes(searchfrom) && tickets.to.includes(searchto)}).map(({ no, from, to, date, time, available }) => (
             <TicketList
               key={no}
               no={no}
