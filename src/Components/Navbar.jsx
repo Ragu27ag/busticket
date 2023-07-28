@@ -340,7 +340,7 @@ function Navbar(props) {
         <div
           style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
         >
-          {ticket.filter((tickets) => {return searchfrom.toLowerCase() === '' ? tickets : tickets.from.includes(searchfrom) && tickets.to.includes(searchto)}).map(({ no, from, to, date, time, available }) => (
+          {ticket.filter((tickets) => {return searchfrom.toLowerCase() === '' ? tickets : tickets.from.includes(searchfrom.toLowerCase()) && tickets.to.includes(searchto.toLowerCase())}).map(({ no, from, to, date, time, available }) => (
             <TicketList
               key={no}
               no={no}
