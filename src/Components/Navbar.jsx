@@ -40,8 +40,8 @@ function Navbar(props) {
   const [message, setMessage] = React.useState(false);
   const [alertmessage, setalertMessage] = React.useState(false);
   const [snackmessage, setsnackmessages] = React.useState(false);
-  const [searchfrom,setSearchFrom] = React.useState(false);
-   const [searchto,setSearchTo] = React.useState(false);
+  const [searchfrom,setSearchFrom] = React.useState('');
+   const [searchto,setSearchTo] = React.useState('');
   const navigate = useNavigate();
 
   const user = React.useMemo(
