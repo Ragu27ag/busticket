@@ -24,6 +24,9 @@ const store = configureStore({
     getDefaultMiddleware().concat(localStorageMiddleware),
 });
 
-store.subscribe(() => console.log("successfully subscribed", store.getState()));
+store.subscribe(() => {
+   const s = store.getState();
+  localStorage.setItem("reduxno", JSON.stringify(s));
+});
 
 export default store;
