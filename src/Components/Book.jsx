@@ -13,7 +13,11 @@ const Book = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const { no } = useSelector((state) => state.bookreducer);
   localStorage.setItem("no", no);
-  const busno = localStorage.getItem("no");
+  const val = JSON.parse(localStorage.getItem("reduxno"));
+
+  // const busno = localStorage.getItem("no");
+    const busno = val.bookreducer.no;
+
   const [bookdata, setbookdata] = useState("");
   const [tickets, setTickets] = useState("");
   // const arr = [];
