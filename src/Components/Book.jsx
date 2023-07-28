@@ -11,8 +11,8 @@ import Loading from "./Loading";
 
 const Book = () => {
   const user = JSON.parse(localStorage.getItem("user"));
-  const { no } = useSelector((state) => state.bookreducer);
-  localStorage.setItem("no", no);
+  // const { no } = useSelector((state) => state.bookreducer);
+  // localStorage.setItem("no", no);
   const val = JSON.parse(localStorage.getItem("reduxno"));
 
   // const busno = localStorage.getItem("no");
