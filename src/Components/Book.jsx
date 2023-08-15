@@ -79,6 +79,11 @@ const Book = () => {
     // console.log(tickets);
     const currtic = bookdata.available - tickets;
 
+
+    if(tickets > bookdata.available){
+      alert('Enter valid no')
+    }
+
     const ticobj = {
       ...bookdata,
       available: currtic,
