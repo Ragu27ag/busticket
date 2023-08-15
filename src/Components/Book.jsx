@@ -83,8 +83,8 @@ const Book = () => {
     if(tickets > bookdata.available){
       alert('Enter valid no')
     }
-
-    const ticobj = {
+    else{
+        const ticobj = {
       ...bookdata,
       available: currtic,
     };
@@ -118,6 +118,10 @@ const Book = () => {
       }, 4000);
       setintervalcount(timecount);
     }
+      
+    }
+
+  
   };
   return (
     <>
