@@ -3,7 +3,7 @@ import axios from "axios";
 
 const backendinstance = axios.create({
   baseURL: process.env.REACT_APP_BACK_URL,
-  timeout: 5000,
+  timeout: 30000,
 });
 
 // dotenv.config();
