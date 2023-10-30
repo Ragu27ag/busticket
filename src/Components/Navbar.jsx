@@ -108,7 +108,7 @@ function Navbar(props) {
   const deleteTicket = async (busno) => {
     // const id = ticket.find(({ no }) => no === busno).id;
     setTicket(ticket.filter(({ no }) => no !== busno));
-    const res = await backendinstance.delete(`/tickets/${busno}`);
+     await backendinstance.delete(`/tickets/${busno}`);
     //console.log(res);
     // fetch(`https://649034421e6aa71680cacc9a.mockapi.io/ticket/${id}`, {
     //   method: "DELETE",
