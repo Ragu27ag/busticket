@@ -8,6 +8,8 @@ import store from "./Store/Store.js";
 import Book from "./Components/Book";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import BookingHistory from "./Components/BookingHistory";
+
 // dotenv.config();
 
 const stripePromise = loadStripe(
