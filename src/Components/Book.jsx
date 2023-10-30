@@ -121,7 +121,7 @@ const Book = () => {
   };
 
   console.log(seat);
-  const handleticket = async () => {
+  const handleticket = async (e) => {
    try {
     // console.log(tickets);
     if (seat.length === 0) {
