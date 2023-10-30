@@ -58,7 +58,10 @@ const BookingHistory = () => {
             <Box
               sx={{
                 border: "1px solid grey",
-                maxWidth: "300px",
+                width: "100%",
+                display: "flex",
+                justifyContent: "space-around",
+                flexWrap: "wrap",
                 borderLeft: "2px solid #e93e3e",
                 borderRadius: "8px",
                 boxShadow:
@@ -66,98 +69,112 @@ const BookingHistory = () => {
               }}
               margin={2}
             >
-              <p
-                style={{
-                  padding: "2px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                  flexWrap: "nowrap",
-                }}
-              >
-                Name :{" "}
-                <span style={{ color: "black", fontFamily: "serif" }}>
-                  {h.name.toUpperCase()}
-                </span>
-              </p>
-              <p
-                style={{
-                  padding: "2px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                  flexWrap: "nowrap",
-                }}
-              >
-                Bus no :{" "}
-                <span style={{ color: "black", fontFamily: "serif" }}>
-                  {h.no.toUpperCase()}
-                </span>
-              </p>
-              <p
-                style={{
-                  padding: "2px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                }}
-              >
-                From :{" "}
-                <span style={{ color: "black", fontFamily: "serif" }}>
-                  {h.from.toUpperCase()}
-                </span>
-              </p>
-              <p
-                style={{
-                  padding: "2px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                  flexWrap: "nowrap",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                }}
-              >
-                To :{" "}
-                <span style={{ color: "black", fontFamily: "serif" }}>
-                  {h.to.toUpperCase()}
-                </span>
-              </p>
-              <p
-                style={{
-                  padding: "2px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                }}
-              >
-                Date :{" "}
-                <span style={{ color: "black", fontFamily: "serif" }}>
-                  {h.date}
-                </span>
-              </p>
-              <p
-                style={{
-                  padding: "2px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                }}
-              >
-                Time :{" "}
-                <span style={{ color: "black", fontFamily: "serif" }}>
-                  {" "}
-                  {h.time}
-                </span>
-              </p>
-              <p
-                style={{
-                  padding: "2px",
-                  paddingBottom: "0px",
-                  textOverflow: "ellipsis",
-                  color: "grey",
-                  fontFamily: "serif",
-                }}
-              >
-                Booked Tickets :{" "}
-                <span style={{ color: "black" }}>{h.count}</span>
-              </p>
+              <div>
+                <p
+                  style={{
+                    padding: "2px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                    flexWrap: "nowrap",
+                  }}
+                >
+                  Name :{" "}
+                  <span style={{ color: "black", fontFamily: "serif" }}>
+                    {h.name.toUpperCase()}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    padding: "2px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                    flexWrap: "nowrap",
+                  }}
+                >
+                  Bus no :{" "}
+                  <span style={{ color: "black", fontFamily: "serif" }}>
+                    {h.no.toUpperCase()}
+                  </span>
+                </p>
+              </div>
+              <div>
+                <p
+                  style={{
+                    padding: "2px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                  }}
+                >
+                  From :{" "}
+                  <span style={{ color: "black", fontFamily: "serif" }}>
+                    {h.from.toUpperCase()}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    padding: "2px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                    flexWrap: "nowrap",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                  }}
+                >
+                  To :{" "}
+                  <span style={{ color: "black", fontFamily: "serif" }}>
+                    {h.to.toUpperCase()}
+                  </span>
+                </p>
+              </div>
+              <div>
+                <p
+                  style={{
+                    padding: "2px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                  }}
+                >
+                  Date :{" "}
+                  <span style={{ color: "black", fontFamily: "serif" }}>
+                    {h.date}
+                  </span>
+                </p>
+                <p
+                  style={{
+                    padding: "2px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                  }}
+                >
+                  Time :{" "}
+                  <span style={{ color: "black", fontFamily: "serif" }}>
+                    {" "}
+                    {h.time}
+                  </span>
+                </p>
+              </div>
+              <div style={{ width: "100px" }}>
+                <p
+                  style={{
+                    padding: "2px",
+                    paddingBottom: "0px",
+                    textOverflow: "ellipsis",
+                    color: "grey",
+                    fontFamily: "serif",
+                  }}
+                >
+                  Booked Tickets :{" "}
+                  {h.count.map((cou) => (
+                    <span
+                      style={{ color: "black", overflowWrap: "break-word" }}
+                    >
+                      {cou + ","}
+                    </span>
+                  ))}
+                </p>
+              </div>
             </Box>
           ))
         )}
