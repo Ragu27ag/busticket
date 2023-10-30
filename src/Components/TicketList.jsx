@@ -38,75 +38,83 @@ const TicketList = ({
       sx={{
         border: "1px solid grey",
         backgroundColor: "white",
-        maxWidth: "250px",
+        width: "100%",
         borderLeft: "2px solid #e93e3e",
+        display: "flex",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
         borderRadius: "8px",
         boxShadow:
           "  rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px",
       }}
       margin={2}
     >
-      <p
-        style={{
-          padding: "2px",
-          textOverflow: "ellipsis",
-          color: "grey",
-          flexWrap: "nowrap",
-        }}
-      >
-        Bus no :{" "}
-        <span style={{ color: "black", fontFamily: "serif" }}>
-          {no.toUpperCase()}
-        </span>
-      </p>
-      <p
-        style={{
-          padding: "2px",
-          textOverflow: "ellipsis",
-          color: "grey",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-        }}
-      >
-        From :{" "}
-        <span style={{ color: "black", fontFamily: "serif" }}>
-          {from.toUpperCase()}
-        </span>
-      </p>
-      <p
-        style={{
-          padding: "2px",
-          textOverflow: "ellipsis",
-          color: "grey",
-          flexWrap: "nowrap",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-        }}
-      >
-        To :{" "}
-        <span style={{ color: "black", fontFamily: "serif" }}>
-          {to.toUpperCase()}
-        </span>
-      </p>
-      <p style={{ padding: "2px", textOverflow: "ellipsis", color: "grey" }}>
-        Date :{" "}
-        <span style={{ color: "black", fontFamily: "serif" }}>{date}</span>
-      </p>
-      <p style={{ padding: "2px", textOverflow: "ellipsis", color: "grey" }}>
-        Time :{" "}
-        <span style={{ color: "black", fontFamily: "serif" }}> {time}</span>
-      </p>
-      <p
-        style={{
-          padding: "2px",
-          paddingBottom: "0px",
-          textOverflow: "ellipsis",
-          color: "grey",
-          fontFamily: "serif",
-        }}
-      >
-        Available Tickets : <span style={{ color: "black" }}>{available}</span>
-      </p>
+      <div>
+        <p
+          style={{
+            padding: "2px",
+            textOverflow: "ellipsis",
+            color: "grey",
+            flexWrap: "nowrap",
+          }}
+        >
+          Bus no :{" "}
+          <span style={{ color: "black", fontFamily: "serif" }}>
+            {no.toUpperCase()}
+          </span>
+        </p>
+        <p
+          style={{
+            padding: "2px",
+            textOverflow: "ellipsis",
+            color: "grey",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
+        >
+          From :{" "}
+          <span style={{ color: "black", fontFamily: "serif" }}>
+            {from.toUpperCase()}
+          </span>
+        </p>
+        <p
+          style={{
+            padding: "2px",
+            textOverflow: "ellipsis",
+            color: "grey",
+            flexWrap: "nowrap",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
+        >
+          To :{" "}
+          <span style={{ color: "black", fontFamily: "serif" }}>
+            {to.toUpperCase()}
+          </span>
+        </p>
+      </div>
+      <div>
+        <p style={{ padding: "2px", textOverflow: "ellipsis", color: "grey" }}>
+          Date :{" "}
+          <span style={{ color: "black", fontFamily: "serif" }}>{date}</span>
+        </p>
+        <p style={{ padding: "2px", textOverflow: "ellipsis", color: "grey" }}>
+          Time :{" "}
+          <span style={{ color: "black", fontFamily: "serif" }}> {time}</span>
+        </p>
+        <p
+          style={{
+            padding: "2px",
+            paddingBottom: "0px",
+            textOverflow: "ellipsis",
+            color: "grey",
+            fontFamily: "serif",
+          }}
+        >
+          Available Tickets :{" "}
+          <span style={{ color: "black" }}>{available}</span>
+        </p>
+      </div>
       <Divider sx={{ backgroundColor: "#e93e3e" }} variant="middle" />
       <br />
       <div
@@ -114,35 +122,38 @@ const TicketList = ({
           display: "flex",
           flexWrap: "wrap",
           justifyContent: "space-evenly",
+          alignItems: "center",
         }}
       >
-        {user?.isadmin ? (
-          <Button
-            variant="primary"
-            sx={{ backgroundColor: "#e93e3e", margin: "2px" }}
-            onClick={() => currentTicket(no)}
-          >
-            Edit
-          </Button>
-        ) : (
-          <Button
-            variant="primary"
-            sx={{ backgroundColor: "#e93e3e", margin: "2px" }}
-            onClick={() => bookTicket(no)}
-            disabled={available === 0}
-          >
-            Book
-          </Button>
-        )}{" "}
-        {user?.isadmin && (
-          <Button
-            variant="primary"
-            sx={{ backgroundColor: "#e93e3e", margin: "2px" }}
-            onClick={() => deleteTicket(no)}
-          >
-            Delete
-          </Button>
-        )}
+        <div>
+          {user?.isadmin ? (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#e93e3e", margin: "2px" }}
+              onClick={() => currentTicket(no)}
+            >
+              Edit
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#e93e3e", margin: "2px" }}
+              onClick={() => bookTicket(no)}
+              disabled={available === 0}
+            >
+              Book
+            </Button>
+          )}{" "}
+          {user?.isadmin && (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: "#e93e3e", margin: "2px" }}
+              onClick={() => deleteTicket(no)}
+            >
+              Delete
+            </Button>
+          )}
+        </div>
       </div>
     </Box>
   );
