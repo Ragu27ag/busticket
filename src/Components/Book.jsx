@@ -6,7 +6,7 @@ import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Loading from "./Loading";
-
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 const Book = () => {
   const user = React.useMemo(
     () => JSON.parse(localStorage.getItem("user")) || {},
@@ -24,6 +24,8 @@ const Book = () => {
   const [intervalcount, setintervalcount] = useState(0);
   let history = useMemo(() => [], []);
 
+ let stripe = useStripe();
+  let element = useElements();
   const setDiable = useCallback(() => {
     history?.forEach((his) => {
       document.getElementById(his).disabled = true;
@@ -120,9 +122,13 @@ const Book = () => {
 
   console.log(seat);
   const handleticket = async () => {
+   try {
     // console.log(tickets);
     if (seat.length === 0) {
       alert("Select Seats");
+} else if ((document.getElementById("card").value === "")) {
+        alert("Enter card details");
+      
     } else {
       document.getElementById("bookbutt").disabled = true;
       const currtic = bookdata.available - seat.length;
@@ -151,7 +157,28 @@ const Book = () => {
 
       // console.log(ticobj);
 
-      if (response1 && response2) {
+        let tempPayment = {
+          amount: "5000",
+        };
+
+        const paymentData = await backendinstance.post("/payment", tempPayment);
+        console.log(paymentData.data);
+
+        const clientSecret = paymentData.data.clientSecret;
+
+        e.preventDefault();
+
+        const res4 = await stripe.confirmCardPayment(clientSecret, {
+          payment_method: { card: element.getElement(CardElement) },
+        });
+        // .then((result) => {
+        //   alert("Payment Successfull");
+        //   console.log(result);
+        // })
+        // .catch((err) => console.warn(err));
+
+        console.log(res4);
+      if (response1 && response2 && res4) {
         localStorage.removeItem("no");
         handleClick();
         const timecount = setTimeout(() => {
@@ -160,6 +187,8 @@ const Book = () => {
         }, 2000);
         setintervalcount(timecount);
       }
+    }} catch (err) {
+      console.error(err);
     }
   };
   return (
@@ -210,7 +239,7 @@ const Book = () => {
                 sx={{
                   border: "1px solid grey",
                   width: "300px",
-                  height: "350px",
+                  height: "400px",
                   textAlign: "center",
                   borderLeft: "2px solid #e93e3e",
                   borderRadius: "8px",
@@ -326,9 +355,13 @@ const Book = () => {
                 ))}
                 <br />
                 <br />
+   <div>
+                  {" "}
+                  <CardElement id="card" />
+                </div>
                 <Button
                   variant="contained"
-                  sx={{ backgroundColor: "#e93e3e" }}
+                  sx={{ backgroundColor: "#e93e3e", marginTop: "20px"  }}
                   onClick={handleticket}
                   id="bookbutt"
                 >
