@@ -28,6 +28,7 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import backendinstance from "../Axios/axios";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const drawerWidth = 240;
 
@@ -40,9 +41,12 @@ function Navbar(props) {
   const [message, setMessage] = React.useState(false);
   const [alertmessage, setalertMessage] = React.useState(false);
   const [snackmessage, setsnackmessages] = React.useState(false);
-  const [searchfrom,setSearchFrom] = React.useState('');
-   const [searchto,setSearchTo] = React.useState('');
+  const [searchfrom, setSearch] = React.useState("");
+  const [searchto, setTOSearch] = React.useState("");
+
   const navigate = useNavigate();
+
+  console.log(JSON.stringify(process.env.REACT_APP_BACK_URL));
 
   const user = React.useMemo(
     () => JSON.parse(localStorage.getItem("user")) || {},
@@ -50,8 +54,8 @@ function Navbar(props) {
   );
 
   const healthchk = async () => {
-   await backendinstance("/tickets/health");
-    // console.log(res);
+    const res = await backendinstance("/tickets/health");
+    console.log(res);
   };
 
   const addTicket = async (tic) => {
@@ -64,8 +68,8 @@ function Navbar(props) {
     } else {
       // console.log(tic);
       setTicket([...ticket, tic]);
-       await backendinstance.post("/tickets", tic);
-      // console.log(response);
+      const response = await backendinstance.post("/tickets", tic);
+      console.log(response);
       // fetch("https://649034421e6aa71680cacc9a.mockapi.io/ticket", {
       //   method: "POST",
       //   body: JSON.stringify(tic),
@@ -104,8 +108,8 @@ function Navbar(props) {
   const deleteTicket = async (busno) => {
     // const id = ticket.find(({ no }) => no === busno).id;
     setTicket(ticket.filter(({ no }) => no !== busno));
-    await backendinstance.delete(`/tickets/${busno}`);
-    // console.log(res);
+    const res = await backendinstance.delete(`/tickets/${busno}`);
+    //console.log(res);
     // fetch(`https://649034421e6aa71680cacc9a.mockapi.io/ticket/${id}`, {
     //   method: "DELETE",
     //   headers: {
@@ -305,29 +309,47 @@ function Navbar(props) {
             close
           </Button>
         </Dialog>
-        <div style={{ textAlign: "end" }}>
+        <div style={{ textAlign: "center" }}>
           <label htmlFor="from">From : </label>
           <input
             id="from"
             placeholder="search from..."
             onChange={(e) => {
-              setSearchFrom(e.target.value);
+              setSearch(e.target.value);
             }}
-            style={{ color: "#e93e3e" }}
+            style={{
+              color: "#e93e3e",
+              height: "40px",
+              borderRadius: "8px",
+              border: "1px solid grey",
+              borderLeft: "2px solid #e93e3e",
+            }}
           />
-          <br />
-          <label htmlFor="to">To :</label>&nbsp;
+          &nbsp; <label htmlFor="to">To :</label>&nbsp;
           <input
             id="to"
             placeholder="search to..."
             onChange={(e) => {
-              setSearchTo(e.target.value);
+              setTOSearch(e.target.value);
             }}
-            style={{ color: "#e93e3e" }}
+            style={{
+              color: "#e93e3e",
+              height: "40px",
+              borderRadius: "8px",
+              border: "1px solid grey",
+              borderLeft: "2px solid #e93e3e",
+            }}
           />
         </div>
-        {user.isadmin ? <h1>Admin Dashboard</h1> : <h1 style={{ color: "#e93e3e" }}> Hi {user.name}</h1>}{" "}
-        <h2 style={{ textAlign: "end" }}>Buses Available : <span style={{ color: "#e93e3e" }}>{ticket.length}</span></h2>
+        {user.isadmin ? (
+          <h1>Admin Dashboard</h1>
+        ) : (
+          <h1 style={{ color: "#e93e3e" }}> Hi {user.name}</h1>
+        )}{" "}
+        <h2 style={{ textAlign: "end" }}>
+          Buses Available :{" "}
+          <span style={{ color: "#e93e3e" }}>{ticket.length}</span>
+        </h2>
         <DialogTicket
           open={open}
           handleClose={handleClose}
@@ -340,19 +362,30 @@ function Navbar(props) {
         <div
           style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
         >
-          {ticket.filter((tickets) => {return searchfrom.toLowerCase() === '' ? tickets : tickets.from.includes(searchfrom.toLowerCase()) && tickets.to.includes(searchto.toLowerCase())}).map(({ no, from, to, date, time, available }) => (
-            <TicketList
-              key={no}
-              no={no}
-              from={from}
-              to={to}
-              date={date}
-              time={time}
-              available={available}
-              deleteTicket={deleteTicket}
-              currentTicket={currentTicket}
-            />
-          ))}
+          {ticket.length === 0 ? (
+            <Loading />
+          ) : (
+            ticket
+              .filter((tickets) => {
+                return searchfrom.toLowerCase() === ""
+                  ? tickets
+                  : tickets.from.includes(searchfrom.toLowerCase()) &&
+                      tickets.to.includes(searchto.toLowerCase());
+              })
+              .map(({ no, from, to, date, time, available }) => (
+                <TicketList
+                  key={no}
+                  no={no}
+                  from={from}
+                  to={to}
+                  date={date}
+                  time={time}
+                  available={available}
+                  deleteTicket={deleteTicket}
+                  currentTicket={currentTicket}
+                />
+              ))
+          )}
         </div>
         <Snackbar
           open={message}
