@@ -137,25 +137,12 @@ const Book = () => {
         available: currtic,
       };
 
-      const history = {
-        ...ticobj,
-        name: user.name,
-        count: seat,
-        email: user.email,
-      };
-
-      const response1 = await backendinstance.put("/tickets", ticobj);
-
-      const response2 = await backendinstance.post(
-        "/tickets/bookhistory",
-        history
-      );
-
-      // console.log(response1, response2);
-
-      //const response3 =  await backendinstance.post("/email", history);
-
-      // console.log(ticobj);
+        const history = {
+          ...ticobj,
+          name: user.name,
+          count: seat,
+          email: user.email,
+        };
 
         let tempPayment = {
           amount: "5000",
@@ -178,16 +165,36 @@ const Book = () => {
         // .catch((err) => console.warn(err));
 
         console.log(res4);
-      if (response1 && response2 && res4) {
-        localStorage.removeItem("no");
-        handleClick();
-        const timecount = setTimeout(() => {
-          // console.log(timecount);
-          navigate("/");
-        }, 2000);
-        setintervalcount(timecount);
+
+        if (res4.error) {
+          alert("Enter card details");
+        } else {
+          const response1 = await backendinstance.put("/tickets", ticobj);
+
+          const response2 = await backendinstance.post(
+            "/tickets/bookhistory",
+            history
+          );
+
+          console.log(response1, response2);
+
+          //const response3 =  await backendinstance.post("/email", history);
+
+          console.log(ticobj);
+
+          if (response1.data && response2.data && res4) {
+            localStorage.removeItem("no");
+            handleClick();
+            const timecount = setTimeout(() => {
+              console.log(timecount);
+              navigate("/");
+            }, 2000);
+            setintervalcount(timecount);
+            console.log(timecount);
+          }
+        }
       }
-    }} catch (err) {
+    } catch (err) {
       console.error(err);
     }
   };
